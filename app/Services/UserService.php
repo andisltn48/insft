@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use Auth;
+
+use JWTAuth;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
@@ -40,12 +41,15 @@ class UserService {
         if ($validator->fails()) {
             throw new InvalidArgumentException($validator->errors()->first());
         }
-        if (Auth::attempt($credentials)) {
-            dd(Auth::user()->createToken('Bearer'));
-            return ['token' => Auth::user()->createToken('Bearer-token')->plainTextToken];
-        } else {
+
+        if (!$jwtToken = JWTAuth::attempt($credentials)) {
             return null;
         }
+        
+        return [
+            'token_type' => 'Bearer',
+            'token' => $jwtToken,
+        ];
 
     }
 }
