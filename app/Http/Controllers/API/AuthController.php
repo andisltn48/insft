@@ -5,25 +5,42 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Services\UserService;
+
 
 class AuthController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function login(Request $request)
     {
-        $credentials = $request->only('email','password');
+        $credentials = $request->only(['email','password']);
 
-        if (Auth::attempt($credentials)) {
-            return response()->json([
-                'statusCode' => 200,
-                'message' => 'berhasil login',
-                'token' => Auth::user()->createToken('BEARER-TOKEN')->plainTextToken;
-            ],200);
-        } else {
-            return response()->json([
-                'statusCode' => 401,
-                'message' => 'email atau password salah',
-            ],401);
+        try {
+            $authenticate = $this->userService->authenticate($credentials);
+            if ($authenticate) {
+                $response['status'] = 200;
+                $response['message'] = 'berhasil login';
+                $response['data'] = $authenticate;
+                
+            } else {
+                $response['status'] = 401;
+                $response['message'] = 'email atau password salah';
+            }
+            
+        } catch (Exception $e) {
+            $response = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
         }
+
+        return response()->json($response,$response['status']);
         
     }
 }
