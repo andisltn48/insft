@@ -12,8 +12,17 @@ class MotorcycleRepository {
         $this->motorcycle = $motorcycle;
     }
 
-    public function getAll()
+    public function store($data,$vehicleId)
     {
-        return $this->motorcycle->get();
+        $motorcycle = new $this->motorcycle;
+
+        $motorcycle->vehicle_id = $vehicleId;
+        $motorcycle->mesin = $data['mesin'];
+        $motorcycle->tipe_suspensi = $data['tipe_suspensi'];
+        $motorcycle->tipe_transmisi = $data['tipe_transmisi'];
+
+        $motorcycle->save();
+
+        return $motorcycle->fresh();
     }
 }

@@ -16,16 +16,6 @@ class UserService {
         $this->userRepository  = $userRepository;
     }
 
-    public function findAll()
-    {
-        return $this->userRepository->findAll();
-    }
-
-    public function findById($id)
-    {
-        return $this->userRepository->findById($id);
-    }
-
     public function findByEmail($email)
     {
         return $this->userRepository->findByEmail($email);

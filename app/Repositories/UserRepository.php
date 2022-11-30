@@ -12,16 +12,6 @@ class UserRepository {
         $this->user = $user;
     }
 
-    public function findAll()
-    {
-        return $this->user->get();
-    }
-
-    public function findById($id)
-    {
-        return $this->user->find($id);
-    }
-
     public function findByEmail($email)
     {
         return $this->user->where('email',$email)->first();
