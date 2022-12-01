@@ -22,6 +22,11 @@ class TransactionRepository {
         return $this->transaction->with('vehicle.motorcycle','vehicle.car')->find($id);
     }
 
+    public function findByVehicleId($id)
+    {
+        return $this->transaction->where('vehicle_id',$id)->get();
+    }
+
     public function store($data,$vehicleId)
     {
         $transaction = new $this->transaction;

@@ -30,6 +30,11 @@ class TransactionService {
     {
         return $this->transactionRepository->findById($id);
     }
+
+    public function findByVehicleId($id)
+    {
+        return $this->transactionRepository->findByVehicleId($id);
+    }
     
     public function storeTransaction($data)
     {

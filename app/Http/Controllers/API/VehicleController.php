@@ -75,4 +75,14 @@ class VehicleController extends Controller
 
         return response()->json($response,$response['status']);
     }
+
+    public function findWithTransaction()
+    {
+        $vehicles = $this->vehicleService->findWithTransaction();
+        return response()->json([
+            'status' => 200,
+            'message' => 'berhasil get penjualan tiap kendaraan',
+            'data' => $vehicles
+        ],200);
+    }
 }
