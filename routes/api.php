@@ -24,6 +24,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('/vehicle/get-all', [VehicleController::class, 'findAll']);
         Route::get('/vehicle/get/{id}', [VehicleController::class, 'findById']);
         Route::get('/vehicle/get-with-transaction', [VehicleController::class, 'findWithTransaction']);
+        Route::get('/vehicle/get-with-transaction/{id}', [VehicleController::class, 'findByIdWithTransaction']);
         
         Route::post('/transaction/store', [TransactionController::class, 'storeTransaction']);
         Route::get('/transaction/get-all', [TransactionController::class, 'findAll']);

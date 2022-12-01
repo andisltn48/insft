@@ -85,4 +85,14 @@ class VehicleController extends Controller
             'data' => $vehicles
         ],200);
     }
+
+    public function findByIdWithTransaction($id)
+    {
+        $vehicle = $this->vehicleService->findByIdWithTransaction($id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'berhasil get penjualan kendaraan',
+            'data' => $vehicle
+        ],200);
+    }
 }

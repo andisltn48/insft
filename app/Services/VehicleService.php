@@ -91,4 +91,15 @@ class VehicleService {
         }
         return $vehicles;
     }
+
+    public function findByIdWithTransaction($id)
+    {
+        $vehicle = $this->findById($id);
+        $transactions = $this->transactionRepository->findByVehicleId($vehicle->id);
+
+        $vehicle['sold'] = count($transactions);
+        $vehicle['transactions'] = $transactions;
+
+        return $vehicle;
+    }
 }
