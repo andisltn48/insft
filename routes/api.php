@@ -27,5 +27,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('/transaction/store', [TransactionController::class, 'storeTransaction']);
         Route::get('/transaction/get-all', [TransactionController::class, 'findAll']);
         Route::get('/transaction/get/{id}', [TransactionController::class, 'findById']);
+
+        Route::post('/auth/logout', [AuthController::class, 'logout']);
     });
 });

@@ -42,4 +42,13 @@ class UserService {
         ];
 
     }
+
+    public function logout()
+    {
+        JWTAuth::parseToken()->invalidate(true);
+        return response()->json([
+            'status' => 200,
+            'message' => 'logout berhasil',
+        ],200);
+    }
 }
