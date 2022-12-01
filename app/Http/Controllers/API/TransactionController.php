@@ -4,32 +4,27 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\VehicleService;
+use App\Services\TransactionService;
 
-class VehicleController extends Controller
+class TransactionController extends Controller
 {
-    protected $vehicleService;
+    protected $transactionService;
 
-    public function __construct(VehicleService $vehicleService)
+    public function __construct(TransactionService $transactionService)
     {
-        $this->vehicleService = $vehicleService;
+        $this->transactionService = $transactionService;
     }
 
-    public function storeVehicle(Request $request)
+    public function storeTransaction(Request $request)
     {
         $data = $request->all();
 
         try {
-            $store = $this->vehicleService->storeVehicle($data);
-            if (is_array($store)) {
-                $response = $store;
-            } else {
-                $response = [
-                    'status' => 201,
-                    'message' => 'berhasil create transaction',
-                    'data' => $store
-                ];
-            }
+            $response = [
+                'status' => 201,
+                'message' => 'berhasil create transaction',
+                'data' => $this->transactionService->storeTransaction($data)
+            ];
         } catch (\Throwable $e) {
             $response = [
                 'status' => 500,
@@ -45,8 +40,8 @@ class VehicleController extends Controller
         try {
             $response = [
                 'status' => 200,
-                'message' => 'berhasil get all kendaraan',
-                'data' => $this->vehicleService->findAll()
+                'message' => 'berhasil get all transaction',
+                'data' => $this->transactionService->findAll()
             ];
         } catch (\Throwable $e) {
             $response = [
@@ -63,8 +58,8 @@ class VehicleController extends Controller
         try {
             $response = [
                 'status' => 200,
-                'message' => 'berhasil get kendaraan',
-                'data' => $this->vehicleService->findById($id)
+                'message' => 'berhasil get transaction',
+                'data' => $this->transactionService->findById($id)
             ];
         } catch (\Throwable $e) {
             $response = [

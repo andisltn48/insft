@@ -14,12 +14,7 @@ class MotorcycleService {
     {
         $this->motorcycleRepository  = $motorcycleRepository;
     }
-
-    public function findAll()
-    {
-        return $this->motorcycleRepository->findAll();
-    }
-
+    
     public function storeMotorcycle($data,$vehicleId)
     {
         $validator = Validator::make($data, [

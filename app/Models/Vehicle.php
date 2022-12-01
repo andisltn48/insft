@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Vehicle extends Eloquent
@@ -13,5 +12,9 @@ class Vehicle extends Eloquent
 
     public function motorcycle(){
         return $this->belongsTo('App\Models\Motorcycle','id','vehicle_id');
+    }
+
+    public function car(){
+        return $this->belongsTo('App\Models\Car','id','vehicle_id');
     }
 }

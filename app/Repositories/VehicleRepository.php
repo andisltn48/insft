@@ -14,12 +14,12 @@ class VehicleRepository {
 
     public function findAll()
     {
-        return $this->vehicle->with('motorcycle')->get();
+        return $this->vehicle->with('motorcycle','car')->get();
     }
 
     public function findById($id)
     {
-        return $this->vehicle->with('motorcycle')->find($id);
+        return $this->vehicle->with('motorcycle','car')->find($id);
     }
 
     public function store($data)
@@ -32,6 +32,20 @@ class VehicleRepository {
         $vehicle->stock = $data['stock'];
 
         $vehicle->save();
+
+        return $vehicle->fresh();
+    }
+
+    public function delete($id)
+    {
+        $vehicle = $this->vehicle->find($id);
+        $vehicle->delete();
+    }
+
+    public function update($id,$data)
+    {
+        $vehicle = $this->vehicle->find($id);
+        $vehicle->update($data);
 
         return $vehicle->fresh();
     }
