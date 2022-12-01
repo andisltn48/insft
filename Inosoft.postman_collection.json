@@ -246,6 +246,42 @@
 					"response": []
 				},
 				{
+					"name": "Get By Id With Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL2F1dGgvbG9naW4iLCJpYXQiOjE2Njk4ODQxMjQsIm5iZiI6MTY2OTg4NDEyNCwianRpIjoiQXVGZGtiVmFlc1JEYVlCUSIsInN1YiI6IjYzODg0MDVmMmUxYmZlMjQyZjBmNmE5MiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.lRPJN6EayN8tAPXRE9om0_3GwOSZUwt3ZmDiqAdGodY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/vehicle/get-with-transaction/638844212dc5e713610c3d05",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"vehicle",
+								"get-with-transaction",
+								"638844212dc5e713610c3d05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get By Id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
