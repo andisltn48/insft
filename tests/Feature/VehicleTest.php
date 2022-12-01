@@ -31,6 +31,16 @@ class VehicleTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_get_by_id_with_transaction()
+    {
+        $user = \App\Models\User::where('email','admin@gmail.com')->first();
+        $token = JWTAuth::fromUser($user);
+        $vehicle = \App\Models\Vehicle::take(1)->first();
+        $response = $this->get('/api/v1/vehicle/get-with-transaction/'.$vehicle->id.'?token='.$token);
+
+        $response->assertStatus(200);
+    }
+
     public function test_get_by_id()
     {
         $user = \App\Models\User::where('email','admin@gmail.com')->first();
